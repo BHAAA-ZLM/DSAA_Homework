@@ -2,7 +2,8 @@ package Week3;
 
 import java.util.Scanner;
 
-public class Week3_A_00 {
+public class Week3_B_00 {
+    private static long sum = 0;
 
     private static void mergeSort(int[] a, int[] b, int left, int right){
         if(left < right){
@@ -19,10 +20,12 @@ public class Week3_A_00 {
         int numElemtns = right - left + 1;
 
         while(left <= leftEnd && mid <= right){
-            if(a[left] - a[mid] >= 0)
+            if(a[left] - a[mid] <= 0)
                 b[tmpPos++] = a[left++];
-            else
+            else {
                 b[tmpPos++] = a[mid++];
+                sum += leftEnd - left + 1;
+            }
         }
 
         while(left <= leftEnd){
@@ -38,35 +41,24 @@ public class Week3_A_00 {
         }
     }
 
-    private static void bubbleSort(int[] a){
-        for(int i = 0; i < a.length - 1; i++){
-            for(int j = 1; j < a.length; j++){
-                if(a[j] < a[j-1]){
-                    int n = a[j-1];
-                    a[j-1] = a[j];
-                    a[j] = n;
-                }
+    private static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int cases = input.nextInt();
+        for(int i = 0; i < cases; i++){
+            int n = input.nextInt();
+            int[] a = new int[n];
+            for(int j = 0; j < n; j++){
+                a[j] = input.nextInt();
             }
+            checkSwap(a);
         }
     }
 
-    private static Scanner input = new Scanner(System.in);
-    public static void main(String[] args) {
-        int length = input.nextInt();
-        int[] a = new int[length];
-        int[] b = new int[length];
-        for(int i = 0; i < length; i++){
-            a[i] = input.nextInt();
-        }
-        long sum = 0;
-
-        mergeSort(a,b,0,length - 1);
-        for(int i : a){
-            System.out.println(i);
-        }
-        for(int i = 0; i < length / 2; i ++){
-            sum += (long)a[i] * (long)a[length - i - 1];
-        }
+    private static void checkSwap(int[] a){
+        sum = 0;
+        int[] b = new int[a.length];
+        mergeSort(a,b,0,a.length - 1);
         System.out.println(sum);
     }
 
