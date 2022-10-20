@@ -16,7 +16,7 @@ public class Week3_A_00 {
     private static void merge(int[] a, int[] b, int left, int mid, int right){
         int leftEnd = mid - 1;
         int tmpPos = left;
-        int numElemtns = right - left + 1;
+        int numElements = right - left + 1;
 
         while(left <= leftEnd && mid <= right){
             if(a[left] - a[mid] >= 0)
@@ -33,7 +33,7 @@ public class Week3_A_00 {
             b[tmpPos++] = a[mid++];
         }
 
-        for(int i = 0; i < numElemtns; i++, right--){
+        for(int i = 0; i < numElements; i++, right--){
             a[right] = b[right];
         }
     }

@@ -2,7 +2,7 @@ package Week3;
 
 import java.util.Scanner;
 
-public class Week4_D_00 {
+public class Week3_D_00 {
     private static final Scanner input = new Scanner(System.in);
 
     private static void mergeSort(int[] a, int[] b, int left, int right){
@@ -139,6 +139,7 @@ public class Week4_D_00 {
             Sum += score[j];
             j++;
         }
+
         Sum -= (long)j * (long)k;
         return Sum;
     }
