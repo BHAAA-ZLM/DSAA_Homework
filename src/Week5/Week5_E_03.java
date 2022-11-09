@@ -76,6 +76,7 @@ public class Week5_E_03 {
                     while(newGuideTmpNode != null){
                         tmpGuide.positions[newGuideTmpNode.val/283]--;
                         tmpGuide.buckets[newGuideTmpNode.val]--;
+                        newGuideTmpNode = newGuideTmpNode.next;
                     }
                 }
             } else if (operation.equals("M")) {
@@ -232,16 +233,9 @@ public class Week5_E_03 {
                     }
 
                 }else{
-//            int[] elements = new int[unchangedif + 1];
-//            for(int i = 0; i < unchangedif + 1; i++){
-//                elements[i] = lNode.val;
-//                lNode = lNode.next;
-//            }
-//            mergeSort(elements, 0, elements.length - 1);
-//            return elements[k - 1];
                     int[] finalPositions = new int[283];
                     int[] finalBuckets = new int[80000];
-                    for(int z = 0; z < unchangedif + 1; z++){
+                    for(int z = 0; z < unchangedif; z++){
                         finalPositions[lNode.val/283]++;
                         finalBuckets[lNode.val]++;
                         if(lNode.next != null){
@@ -314,11 +308,12 @@ public class Week5_E_03 {
             if(block.headGuide.next == null){
                 Guide newGuide = new Guide(block.headGuide);
                 block.headGuide.next = newGuide;
+                newGuide.last = block.headGuide;
                 block.tmpGuide = newGuide;
             }
 
             //Insert elements into the tmpGuide
-            if(block.tmpGuide.count < block.guideSize){
+            if(block.tmpGuide.count < 283){
                 int positionIndex = node.val/283;
                 block.tmpGuide.positions[positionIndex]++;
                 block.tmpGuide.buckets[node.val]++;
@@ -336,12 +331,86 @@ public class Week5_E_03 {
             }
 
             //When tmpGuide is full, create new guide and set tmpGuide to the new Guide
-            if(block.tmpGuide.count >= block.guideSize){
+            if(block.tmpGuide.count >= 283){
                 Guide newGuide = new Guide(block.tmpGuide);
                 block.tmpGuide.next = newGuide;
+                newGuide.last = block.tmpGuide;
                 block.tmpGuide = newGuide;
             }
             return block;
+        }
+    }
+}
+
+
+class QReader {
+    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private StringTokenizer tokenizer = new StringTokenizer("");
+
+    private String innerNextLine() {
+        try {
+            return reader.readLine();
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    public boolean hasNext() {
+        while (!tokenizer.hasMoreTokens()) {
+            String nextLine = innerNextLine();
+            if (nextLine == null) {
+                return false;
+            }
+            tokenizer = new StringTokenizer(nextLine);
+        }
+        return true;
+    }
+
+    public String nextLine() {
+        tokenizer = new StringTokenizer("");
+        return innerNextLine();
+    }
+
+    public String next() {
+        hasNext();
+        return tokenizer.nextToken();
+    }
+
+    public int nextInt() {
+        return Integer.parseInt(next());
+    }
+
+    public long nextLong() {
+        return Long.parseLong(next());
+    }
+}
+
+class QWriter implements Closeable {
+    private BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+
+    public void print(Object object) {
+        try {
+            writer.write(object.toString());
+        } catch (IOException e) {
+            return;
+        }
+    }
+
+    public void println(Object object) {
+        try {
+            writer.write(object.toString());
+            writer.write("\n");
+        } catch (IOException e) {
+            return;
+        }
+    }
+
+    @Override
+    public void close() {
+        try {
+            writer.close();
+        } catch (IOException e) {
+            return;
         }
     }
 }
