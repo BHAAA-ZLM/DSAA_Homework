@@ -6,9 +6,9 @@ import java.util.Scanner;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-public class Week7_B_00 {
+public class Week7_B_01 {
     public static final Scanner input = new Scanner(System.in);
-    public static final int ALPHABET = 26;
+    public static final int ALPHABET = 141;
     public static final int PRIME = 514379;
 
 
@@ -94,33 +94,41 @@ public class Week7_B_00 {
         Node head = new Node(-1);
         Node tmpNode = head;
         int count = 0;
+
         int front = 0;
         int back = 0;
         int power = 1;
-//        for(int i = 0; i < length - 1; i++){
-//            power = ALPHABET * power % PRIME;
-//        }
-        for(int i = 0; i < length; i++){
-            front = front + (A.charAt(i) - 'a') * power;
-            back = back + (A.charAt(length - 1 - i) - 'a') * power;
-            power = power * ALPHABET;
 
-//            front = (front * ALPHABET + (A.charAt(i) - 'a')) % PRIME;
-//            back = (back * ALPHABET + (A.charAt(length - 1 - i) - 'a')) % PRIME;
+        //get the power of our length
+        for(int i = 0; i < length - 1; i++){
+            power = ALPHABET * power ;
         }
-        if(front == back){
+
+        //get the first front number (0,...,length - 1), add to hash[0]
+        for(int i = 0; i < length; i++){
+            front = (front * ALPHABET + (A.charAt(i) - 'a')) ;
+        }
+        int[] frontHash = new int[A.length() - length + 1];
+        frontHash[0] = front;
+
+        for(int i = 0; i < A.length() - length; i++){
+            front = ((front - power * (A.charAt(i) - 'a')) * ALPHABET + (A.charAt(i + length) - 'a')) ;
+            frontHash[i + 1] = front;
+        }
+
+        for(int i = A.length() - 1; i >= A.length() - length; i--){
+            back = (back * ALPHABET + (A.charAt(i) - 'a'));
+        }
+        if(frontHash[A.length() - length] == back){
             count++;
-            tmpNode.next = new Node(front);
+            tmpNode.next = new Node(back);
             tmpNode = tmpNode.next;
         }
-        for(int i = 0; i < A.length() - length; i++){
-            front = (front - (A.charAt(i) - 'a'))/ALPHABET + (A.charAt(i + length) - 'a') * power;
-            back = (back - (A.charAt(i) - 'a') * power) * ALPHABET + (A.charAt(length + i) - 'a');
-//            front = ((front - power * (A.charAt(i) - 'a')) * ALPHABET + (A.charAt(i + length) - 'a')) % PRIME;
-//            back = ((back - (A.charAt(i) - 'a')) / ALPHABET + (A.charAt(i+length) - 'a') * power) % PRIME;
-            if(front == back){
+        for(int i = A.length() - 1; i >= length; i--){
+            back = ((back - (A.charAt(i) - 'a') * power) * ALPHABET + (A.charAt(i - length) - 'a')) ;
+            if(frontHash[i - length] == back){
                 count++;
-                tmpNode.next = new Node(front);
+                tmpNode.next = new Node(back);
                 tmpNode = tmpNode.next;
             }
         }
