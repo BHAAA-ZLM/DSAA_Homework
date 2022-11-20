@@ -92,7 +92,7 @@ public class MidTerm {
         int i = 0, j = 0;
         int k = l;
         while(i < n1 && j < n2){
-            if(L[i] <= R[j]){
+            if(L[i] >= R[j]){
                 arr[k] = L[i];
                 i++;
             }else{
@@ -115,20 +115,45 @@ public class MidTerm {
         }
     }
 
-    public static int[] getLSP(String str){
-        int[] lsp = new int[str.length()];
-        lsp[0] = 0;
+    /*
+    A function to calculate the transition function for the 26 sized alphabet
+     */
+    public static int[][] getTransitionFunctions(String str){
+        int[][] trans = new int[str.length()][26];
+        int x = 0;
+        for(int i = 0; i < trans.length; i++){
+            int textChar = str.charAt(i) - 'a';
+            for(int j = 0; j < 26; j++){
+                if(j == textChar){
+                    trans[i][j]++;
+                }else{
+                    trans[i][j] = trans[x][j];
+                }
+            }
+            if(i != 0){
+                x = trans[i][textChar];
+            }
+        }
+        return trans;
+    }
+
+    /*
+    The function to calculate the longest palindromic substring in a string
+     */
+    public static int[] getLPS(String str){
+        int[] lps = new int[str.length()];
+        lps[0] = 0;
         int k = 0;
         for(int i = 1; i < str.length(); i++){
             while(k > 0 && str.charAt(i) != str.charAt(k)){
-                k = lsp[k - 1];
+                k = lps[k - 1];
             }
             if(str.charAt(i) == str.charAt(k)){
                 k++;
             }
-            lsp[i] = k;
+            lps[i] = k;
         }
-        return lsp;
+        return lps;
     }
 
     public static void main(String[] args) {
@@ -137,12 +162,16 @@ public class MidTerm {
         for(int b : a) {
             System.out.print(b);
         }
-        System.out.println();
-        String b = "abbababbaba";
-        int[] c = getLSP(b);
-        for(int d : c){
-            System.out.print(d);
-        }
+//        int[] insertion = {5,1,3,6,2,45,7,23,45,5,2,3};
+//        for(int b : insertionSort(insertion)){
+//            System.out.print(b + " ");
+//        }
+//        System.out.println();
+//        String b = "abbababbaba";
+//        int[] c = getLPS(b);
+//        for(int d : c){
+//            System.out.print(d + " ");
+//        }
     }
 
 
