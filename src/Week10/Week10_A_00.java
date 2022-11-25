@@ -72,35 +72,6 @@ public class Week10_A_00 {
 }
 
 
-class QWriter implements Closeable {
-    private BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-
-    public void print(Object object) {
-        try {
-            writer.write(object.toString());
-        } catch (IOException e) {
-            return;
-        }
-    }
-
-    public void println(Object object) {
-        try {
-            writer.write(object.toString());
-            writer.write("\n");
-        } catch (IOException e) {
-            return;
-        }
-    }
-
-    @Override
-    public void close() {
-        try {
-            writer.close();
-        } catch (IOException e) {
-            return;
-        }
-    }
-}
 
 //dfs(node a){
 //    if(a == null) return;
