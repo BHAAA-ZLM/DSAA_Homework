@@ -102,7 +102,6 @@ public class Week5_C_00 {
         Node next;
         Node larger;
         Node smaller;
-
         Node(int value){
             this.value = value;
         }

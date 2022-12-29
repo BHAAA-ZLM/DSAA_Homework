@@ -1,0 +1,219 @@
+7
+1 4 5 2 1 3 2
+should be: 4
+
+D:
+10 3
+4 -5 2
+1
+ask 7
+should be: 7
+
+10 7
+4 -5 2 3 -4 6 -5
+1
+ask 2
+should be: 3
+
+10 9
+4 -5 3 2 3 -4 5 6 -5
+3
+rem 3
+rem 6
+ask 2
+should be: 3
+
+10 5
+4 3 -4 6 -5
+3
+ins 2 -5
+ins 3 2
+ask 2
+
+10 1
+-5
+13
+ask 2
+ins 1 6
+ask 2
+ins 1 -4
+ask 2
+ins 1 3
+ask 2
+ins 1 2
+ask 2
+ins 1 -5
+ask 2
+ins 1 4
+ask 2
+should be:0 3 1 2 4 2 3
+
+10 0
+4
+ins 1 2
+ins 1 -5
+ins 1 4
+ask 7
+should be: 7
+
+10 0
+7
+ins 1 2
+ins 1 -5
+ins 1 4
+rem 1
+rem 1
+rem 1
+ask 7
+should be: 7
+
+10 0
+4
+ins 1 2
+ins 1 -5
+ins 1 4
+ask 7
+
+46 8
+41 17 -18 -18 -33 -26 5 -13
+7
+rem 3
+rem 1
+ins 1 -11
+rem 5
+ins 4 16
+ins 4 -3
+ask 33
+should be: 0
+
+10 3
+-4 -5 -6
+1
+ask 2
+
+34 3
+27 16 -4
+7
+ask 15
+ins 2 -17
+ins 3 22
+ins 4 -13
+ins 1 33
+ask 0
+ask 12
+should be: 30 30 30
+
+10 3
+8 9 -4
+1
+ask 5
+should be: 6
+
+34 3
+27 16 -4
+1
+ask 15
+should be: 30
+
+44 5
+-18 -32 -2 -28 22
+10
+rem 2
+ask 31
+ins 4 17
+ins 5 33
+ask 37
+ins 6 -23
+rem 5
+ask 3
+ins 2 -20
+ask 15
+should be: 22 44 22 22
+
+1
+44 5
+-18 -32 -2 -28 22
+2
+rem 2
+ask 31
+
+44 5
+-18 -2 -2 -28 22
+4
+rem 2
+ins 4 17
+ins 5 33
+ask 37
+
+
+44 6
+-18 -2 -28 17 33 22
+1
+ask 37
+should be: 44
+
+44 6
+-18 -2 -28 17 33 22
+5
+rem 2
+ask 31
+ins 4 17
+ins 5 33
+ask 37
+
+int setOff = 0;
+            int left = getMergeKey(node.left);
+            int right = getMergeKey(node.right);
+            int mid = node.key;
+            int tmpLeftBound = getLeftBound(node.left);
+            int tmpRightBound = getRightBound(node.left);
+
+            int tmpLeft = left + tmpLeftBound;
+            int tmpRight = left + tmpRightBound;
+
+            if(tmpRight < getOrgLeftBound(node)){
+                setOff = 0;
+                node.leftBound = 0;
+                node.rightBound = 0;
+                tmpLeftBound = 0;
+                tmpRightBound = 0;
+            }else if(tmpLeft > getOrgRightBound(node)){
+                setOff = 0;
+                node.leftBound = C;
+                node.rightBound = C;
+                tmpLeftBound = C;
+                tmpRightBound = C;
+            }else {
+                setOff = left + mid;
+                tmpLeftBound = Math.max(getOrgLeftBound(node), tmpLeft);
+                tmpRightBound = Math.min(getOrgRightBound(node), tmpRight);
+            }
+
+            tmpLeft = mid + tmpLeftBound;
+            tmpRight = mid + tmpRightBound;
+
+            if(tmpRight < getLeftBound(node.right)){
+                setOff = 0;
+                node.leftBound = 0;
+                node.rightBound = 0;
+                if(getMergeKey(node.right) > 0){
+                    node.mergeKey = node.right.mergeKey;
+                }
+                return;
+            }else if(tmpLeft >getRightBound(node.right)){
+                setOff = 0;
+                node.leftBound = C;
+                node.rightBound = C;
+                if(getMergeKey(node.right) < 0){
+                    node.mergeKey = node.right.mergeKey;
+                }
+                return;
+            }else {
+                setOff += right;
+                tmpLeftBound = Math.max(getLeftBound(node.right), tmpLeft);
+                tmpRightBound = Math.min(getRightBound(node.right), tmpRight);
+
+                node.leftBound = tmpLeftBound - mid - left;
+                node.rightBound = tmpRightBound - mid - left;
+            }
+            node.mergeKey = setOff;
