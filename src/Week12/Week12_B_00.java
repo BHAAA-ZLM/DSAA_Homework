@@ -6,17 +6,6 @@ public class Week12_B_00 {
     public static final Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-//        Heap a = new Heap(5);
-//        for(int i = 5; i > 0; i--){
-//            if(i == 3){
-//                a.insert(2);
-//                continue;
-//            }
-//            a.insert(i);
-//        }
-//        for(int i = 0; i < 5; i++){
-//            System.out.println(a.pop());
-//        }
         int testcase = input.nextInt();
         for(int i = 0; i < testcase; i++){
             int n = input.nextInt();

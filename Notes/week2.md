@@ -134,7 +134,7 @@ Worst cases:
 Worst Case Running Time:
 : The worst-case running time (or worst case cost) of an algorithm under a problem size n, is defined to be the largest running time of the algorithm on all the inputs of the same size n.
 
-In CS, it is an art to design algorithms with performance guarantee.
+In CS, it is an art to design algorithms with performance guaranteed.
 
 #### Example
 e.g. An sorted array A(ascending), is $t \in A$?

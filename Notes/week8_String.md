@@ -45,6 +45,26 @@ Matching the text -> $O(n)$
 Space complexity:
 Building the function is also $O(| \Sigma | \cdot m)$ because we need to store the transition table.
 
+```Java
+buildFSA(String str){
+    int[][] fsaTable = new int[str.length][alphabetSize];
+    int x = 0;
+    for(int i = 0; i < str.length; i++){
+        int character = str.charAt(i) - 'a';
+        for(int j = 0; j < alphabetSize; j++){
+            if(charcter == j){
+                fsaTable[i][j] = i + 1;
+            }else{
+                fsaTable[i][j] = fsaTable[x][j];
+            }
+        }
+        if(i != 0){
+            x = fsaTable[x][character]
+        }
+    }
+}
+```
+
 **Using it to solve String matching**
 
 This is faster, because it skips some of the matching between T and P.

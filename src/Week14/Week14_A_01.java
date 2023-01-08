@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class Week14_A_00 {
+public class Week14_A_01 {
 
     public static final QReader in = new QReader();
 
@@ -88,6 +88,10 @@ public class Week14_A_00 {
                     break;
                 }
             }
+        }
+
+        void floatUp(Node x){
+
         }
 
         Node pop(){

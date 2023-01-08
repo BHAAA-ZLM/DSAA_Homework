@@ -20,7 +20,7 @@
 
 Textbook chapters after each class. **Introduction to Algorithms** and **Data Structures and Algorithms Analysis in C++**
 
-Solve as many problems as possible [in here](http://acm.hdu.edu.cn).
+Solve as many problems as possible [here](http://acm.hdu.edu.cn).
 
 ## Solving Real World Problems
 Abstract real world problems and procedures into things machines can understand.
@@ -66,5 +66,4 @@ Through data structure, we can reduce the time need to search a certain thing, b
 *Recursive technique*:
 * Reduce the problem into smaller subproblems. (divide and conquer)
 
-*Iteration*
 

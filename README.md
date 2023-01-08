@@ -7,7 +7,7 @@ I'm very interested in biology and computer science, that's the
 main reason I chose this major and this cours.
 
 - ✉️ Email: 12112618@mail.sustech.edu.cn
-- 😍 Hobbies: Watch Bilibili during spare times, Learn new stuff, playing games and Exercises
+- 😍 Hobbies: Watch travel videos on Bilibili during spare times, Learn new stuff, playing games and Exercises
 - 🤔 Dreams: Study aboard for a Doctor degree
 
 ## About the Course

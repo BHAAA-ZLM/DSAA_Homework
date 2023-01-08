@@ -13,7 +13,7 @@ So in computer science, we always ignore the constants in time complexity equati
 #### Asymptotic Analyisis 
 
 Big-O notation:
-: Let $f(n) , g(n)$ be two functions of n. We say $ f(n)$ grows asymptotically no faster than $g(n)$, if there is a constant $c > 0$ such that $$f(n) \le c_1 \cdot g(n)$$ holds for all $n \ge c_2$. We can say $$f(n) = O(g(n))$$
+: Let $f(n) , g(n)$ be two functions of n. We say $ f(n)$ grows asymptotically no faster than $g(n)$, if there is a constant $c_1 > 0$ such that $$f(n) \le c_1 \cdot g(n)$$ holds for all $n \ge c_2$. We can say $$f(n) = O(g(n))$$
 
 e.g. proving $10000\log_2{(n)} = O(n)$
 
@@ -81,7 +81,7 @@ time complexity: $f(n) = \frac{3}{2}n^2 + \frac{3}{2}n - 3$, $O(n^2)$
 
 **Insertion Sort**: 
 ```
-1. for integer i <- 1 to n
+1. for integer i <- n to 1
 2.  for integer j <- i to 1 with j > 2
 3.      if A[j-1] > A[j] then 
 4.          swap A[j-1], A[j]
