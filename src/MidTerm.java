@@ -1,5 +1,3 @@
-package Week7;
-
 public class MidTerm {
 
     //this are all the codes for the algorithms before the midterm
